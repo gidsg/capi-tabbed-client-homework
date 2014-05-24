@@ -1,3 +1,4 @@
+<!-- please be gentle :-) -->
 <html>
 <head>
 <script>
@@ -23,8 +24,10 @@ function getJSONP(url, success) {
 <script>
 getJSONP('http://content.guardianapis.com/football?callback=?', function(data){
     console.log(data);
-    alert(data.response.results[1].apiUrl)
+    document.getElementById("headline").innerHTML='<a href="' +data.response.results[1].webUrl +'">'+ data.response.results[1].webTitle+'</a>';
 });
 </script>
+<h1>Latest Headlines</h1>
+    <span id="headline"></span>
 </body>
 </html>
