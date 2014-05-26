@@ -24,11 +24,25 @@ function getJSONP(url, success) {
 <script>
 getJSONP('http://content.guardianapis.com/football?callback=?', function(data){
     console.log(data);
-    document.getElementById("headline").innerHTML='<a href="' +data.response.results[1].webUrl +'">'+ data.response.results[1].webTitle+'</a>';
-})
+    for(i=0;i<5;i++){
+    var elementId=i+1    
+
+        document.getElementById("headline-"+elementId).innerHTML='<a href="' +data.response.results[i].webUrl +'">'+ data.response.results[i].webTitle+'</a>';
+    }
+    
+
+}
+        
+        
+        
+        )
 ;
 </script>
 <h1>Latest Headlines</h1>
-    <span id="headline"></span>
+    <p id="headline-1"></span>
+    <p id="headline-2"></span>
+    <p id="headline-3"></span>
+    <p id="headline-4"></span>
+    <p id="headline-5"></span>
 </body>
 </html>
