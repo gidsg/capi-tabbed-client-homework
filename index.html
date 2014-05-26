@@ -25,7 +25,8 @@ function getJSONP(url, success) {
 getJSONP('http://content.guardianapis.com/football?callback=?', function(data){
     console.log(data);
     document.getElementById("headline").innerHTML='<a href="' +data.response.results[1].webUrl +'">'+ data.response.results[1].webTitle+'</a>';
-});
+})
+;
 </script>
 <h1>Latest Headlines</h1>
     <span id="headline"></span>
