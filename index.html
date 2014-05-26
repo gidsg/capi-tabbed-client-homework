@@ -1,48 +1,68 @@
-<!-- please be gentle :-) -->
-<html>
-<head>
-<script>
-function getJSONP(url, success) {
+    <!-- please be gentle :-) -->
+    <html>
+    <head>
+    <script>
+   
+        
+    function getJSONP(url, success) {
 
-    var ud = '_' + +new Date,
-        script = document.createElement('script'),
-        head = document.getElementsByTagName('head')[0]
-               || document.documentElement;
+        var ud = '_' + +new Date,
+            script = document.createElement('script'),
+            head = document.getElementsByTagName('head')[0]
+                   || document.documentElement;
 
-    window[ud] = function(data) {
-        head.removeChild(script);
-        success && success(data);
-    };
+        window[ud] = function(data) {
+            head.removeChild(script);
+            success && success(data);
+        };
 
-    script.src = url.replace('callback=?', 'callback=' + ud);
-    head.appendChild(script);
+        script.src = url.replace('callback=?', 'callback=' + ud);
+        head.appendChild(script);
 
-}
-</script>
-</head>
-<body>
-<script>
-getJSONP('http://content.guardianapis.com/football?callback=?', function(data){
-    console.log(data);
-    for(i=0;i<5;i++){
-    var elementId=i+1    
-
-        document.getElementById("headline-"+elementId).innerHTML='<a href="' +data.response.results[i].webUrl +'">'+ data.response.results[i].webTitle+'</a>';
     }
-    
-
+        
+        function getSectionHeadlines(sectionName){
+    getJSONP('http://content.guardianapis.com/'+sectionName+'?callback=?', function(data){
+        console.log(data);
+        for(i=0;i<5;i++){
+        var elementId=i+1    
+document.getElementById('headline-'+sectionName+'-'+elementId).innerHTML='<a href="' +data.response.results[i].webUrl +'">'+ data.response.results[i].webTitle+'</a>';
 }
-        
-        
-        
-        )
-;
-</script>
-<h1>Latest Headlines</h1>
-    <p id="headline-1"></span>
-    <p id="headline-2"></span>
-    <p id="headline-3"></span>
-    <p id="headline-4"></span>
-    <p id="headline-5"></span>
-</body>
-</html>
+    });
+        }
+getSectionHeadlines("football"); 
+getSectionHeadlines("uk-news");  
+getSectionHeadlines("travel");        
+    </script>
+    </head>
+    <body>
+    <script>
+    
+    </script>
+    <h1>Latest Headlines</h1>
+        <h2>UK News</h2>
+        <ul>
+        <li id="headline-uk-news-1"></p>
+        <li id="headline-uk-news-2"></p>
+        <li id="headline-uk-news-3"></p>
+        <li id="headline-uk-news-4"></p>
+        <li id="headline-uk-news-5"></p> 
+        </ul>    
+        <h2>Football</h2>
+        <ul>
+        <li id="headline-football-1"></p>
+        <li id="headline-football-2"></p>
+        <li id="headline-football-3"></p>
+        <li id="headline-football-4"></p>
+        <li id="headline-football-5"></p>
+        </ul>    
+        <h2>Travel</h2>
+        <ul>
+        <li id="headline-travel-1"></p>
+        <li id="headline-travel-2"></p>
+        <li id="headline-travel-3"></p>
+        <li id="headline-travel-4"></p>
+        <li id="headline-travel-5"></p>
+        </ul>
+    </body>
+    </html>
